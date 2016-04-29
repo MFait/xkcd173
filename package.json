@@ -1,0 +1,11 @@
+{
+  "name": "xkcd173",
+  "version": "1.0.0",
+  "description": "solving the problem mentioned in https://xkcd.com/173/",
+  "main": "movie-seating.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "mfait",
+  "license": "ISC"
+}
