@@ -1,15 +1,14 @@
 var parser = require('../src/parser.js');
+var relationshipTypes = require('../src/relationshipTypes.js');
 var expect = require('chai').expect;
 
 describe("parser", function () {
 
     it('should parse a friend relationship', function() {
         var raw = 'Ann and Bob are friends';
-
         var relationships = parser.parse(raw);
-
-        expect(relationships.Ann.Bob).to.equal(2);
-
+        expect(relationships.Ann.Bob).to.equal(relationshipTypes.FRIENDS);
+        expect(relationships.Bob.Ann).to.equal(relationshipTypes.FRIENDS);
     });
 
 });
