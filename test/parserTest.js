@@ -10,5 +10,13 @@ describe("parser", function () {
         expect(relationships.Ann.Bob).to.equal(relationshipTypes.FRIENDS);
         expect(relationships.Bob.Ann).to.equal(relationshipTypes.FRIENDS);
     });
+    
+    it('should parse a acquaintances realtionship', function() {
+        var raw = 'Charlie and Danny are acquaintances';
+        var relationships = parser.parse(raw);
+        expect(relationships.Charlie.Danny).to.equal(relationshipTypes.ACQUAINTANCES);
+        expect(relationships.Danny.Charlie).to.equal(relationshipTypes.ACQUAINTANCES);
+    });
+    
 
 });

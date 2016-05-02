@@ -21,6 +21,14 @@ var parser =  {
             add(relationships, matches[2], matches[1], relationshipTypes.FRIENDS);
         }
 
+        regex = /(.*?) and (.*?) are acquaintances/g;
+        matches = regex.exec(raw);
+
+        if (matches) {
+            add(relationships, matches[1], matches[2], relationshipTypes.ACQUAINTANCES);
+            add(relationships, matches[2], matches[1], relationshipTypes.ACQUAINTANCES);
+        }
+
         return relationships;
     }
 
