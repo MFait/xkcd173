@@ -29,6 +29,14 @@ var parser =  {
             add(relationships, matches[2], matches[1], relationshipTypes.ACQUAINTANCES);
         }
 
+        regex = /(.*?) and (.*?) are in a relationship/g;
+        matches = regex.exec(raw);
+
+        if (matches) {
+            add(relationships, matches[1], matches[2], relationshipTypes.IN_A_RELATIONSHIP);
+            add(relationships, matches[2], matches[1], relationshipTypes.IN_A_RELATIONSHIP);
+        }
+
         return relationships;
     }
 

@@ -1,7 +1,8 @@
 relationshipTypes = {
 
+    ACQUAINTANCES: 1,
     FRIENDS: 2,
-    ACQUAINTANCES: 1
+    IN_A_RELATIONSHIP: 5
 
 };
 
