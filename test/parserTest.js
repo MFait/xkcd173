@@ -24,6 +24,12 @@ describe("parser", function () {
         expect(relationships.Emma.Frank).to.equal(relationshipTypes.IN_A_RELATIONSHIP);
         expect(relationships.Frank.Emma).to.equal(relationshipTypes.IN_A_RELATIONSHIP);
     });
-    
+
+    it('should parse a one way cruch', function() {
+        var raw = 'Gil has a crush on Hans';
+        var relationships = parser.parse(raw);
+        expect(relationships.Gil.Hans).to.equal(relationshipTypes.CRUSH);
+        expect(relationships.Hans.Gil).to.equal(relationshipTypes.FRIENDS);
+    });
 
 });

@@ -36,6 +36,11 @@ var parser =  {
             add(relationships, matches[2], matches[1], relationshipTypes.IN_A_RELATIONSHIP);
         });
 
+        checkMatch(raw, /(.*?) has a crush on (.*?)$/g, function(matches) {
+            add(relationships, matches[1], matches[2], relationshipTypes.CRUSH);
+            add(relationships, matches[2], matches[1], relationshipTypes.FRIENDS);
+        });
+
         return relationships;
     }
 
