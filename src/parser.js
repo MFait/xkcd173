@@ -1,4 +1,5 @@
 var relationshipTypes = require('./relationshipTypes.js');
+var _ = require('lodash');
 
 function add(relationships, from, to, type) {
     if (relationships[from] == undefined) {
@@ -21,24 +22,26 @@ var parser =  {
     parse: function(raw) {
         var relationships = {};
 
-        checkMatch(raw, /(.*?) and (.*?) are friends/g, function(matches) {
-            add(relationships, matches[1], matches[2], relationshipTypes.FRIENDS);
-            add(relationships, matches[2], matches[1], relationshipTypes.FRIENDS);
-        });
+        _.forEach(_.split(raw, '\n'), function(line) {
+            checkMatch(line, /(.*?) and (.*?) are friends/g, function(matches) {
+                add(relationships, matches[1], matches[2], relationshipTypes.FRIENDS);
+                add(relationships, matches[2], matches[1], relationshipTypes.FRIENDS);
+            });
 
-        checkMatch(raw, /(.*?) and (.*?) are acquaintances/g, function(matches) {
-            add(relationships, matches[1], matches[2], relationshipTypes.ACQUAINTANCES);
-            add(relationships, matches[2], matches[1], relationshipTypes.ACQUAINTANCES);
-        });
+            checkMatch(line, /(.*?) and (.*?) are acquaintances/g, function(matches) {
+                add(relationships, matches[1], matches[2], relationshipTypes.ACQUAINTANCES);
+                add(relationships, matches[2], matches[1], relationshipTypes.ACQUAINTANCES);
+            });
 
-        checkMatch(raw, /(.*?) and (.*?) are in a relationship/g, function(matches) {
-            add(relationships, matches[1], matches[2], relationshipTypes.IN_A_RELATIONSHIP);
-            add(relationships, matches[2], matches[1], relationshipTypes.IN_A_RELATIONSHIP);
-        });
+            checkMatch(line, /(.*?) and (.*?) are in a relationship/g, function(matches) {
+                add(relationships, matches[1], matches[2], relationshipTypes.IN_A_RELATIONSHIP);
+                add(relationships, matches[2], matches[1], relationshipTypes.IN_A_RELATIONSHIP);
+            });
 
-        checkMatch(raw, /(.*?) has a crush on (.*?)$/g, function(matches) {
-            add(relationships, matches[1], matches[2], relationshipTypes.CRUSH);
-            add(relationships, matches[2], matches[1], relationshipTypes.FRIENDS);
+            checkMatch(line, /(.*?) has a crush on (.*?)$/g, function(matches) {
+                add(relationships, matches[1], matches[2], relationshipTypes.CRUSH);
+                add(relationships, matches[2], matches[1], relationshipTypes.FRIENDS);
+            });
         });
 
         return relationships;

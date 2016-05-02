@@ -32,4 +32,24 @@ describe("parser", function () {
         expect(relationships.Hans.Gil).to.equal(relationshipTypes.FRIENDS);
     });
 
+    it('should parse mulitple relationships', function() {
+        var raw =
+            'Ina and Jan are in a relationship\n' +
+            'Klaus and Jan are friends\n' +
+            'Klaus has a crush on Ina\n';
+
+        var relationships = parser.parse(raw);
+
+        console.log(relationships);
+
+        expect(relationships.Ina.Jan).to.equal(relationshipTypes.IN_A_RELATIONSHIP);
+        expect(relationships.Jan.Ina).to.equal(relationshipTypes.IN_A_RELATIONSHIP);
+        expect(relationships.Klaus.Jan).to.equal(relationshipTypes.FRIENDS);
+        expect(relationships.Jan.Klaus).to.equal(relationshipTypes.FRIENDS);
+        expect(relationships.Klaus.Ina).to.equal(relationshipTypes.CRUSH);
+        expect(relationships.Ina.Klaus).to.equal(relationshipTypes.FRIENDS);
+        // looks like Klaus and Jan will not be friends any more very soon ...
+    });
+
+
 });
