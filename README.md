@@ -1,15 +1,5 @@
-# xkcd173
-
-see [this xkcd comit](https://xkcd.com/173/)
-
-# install
-
-```npm install```
-
-# test
-
-```npm test```
-
-# run
-
-```node run```
+## xkcd173
+- see [this xkcd comic](https://xkcd.com/173/)
+- ```npm install```
+- ```npm test```
+- ```node run```
