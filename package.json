@@ -4,7 +4,8 @@
   "description": "solving the problem mentioned in https://xkcd.com/173/",
   "main": "movie-seating.js",
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha "
+    "test": "./node_modules/mocha/bin/mocha ",
+    "start": "node movie-seating.js"
   },
   "author": "mfait",
   "license": "ISC",

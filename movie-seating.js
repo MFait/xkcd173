@@ -16,4 +16,7 @@ var relationships = parser.parse(raw);
 var sequences = seater.allSequences(relationships);
 var best = seater.findBest(sequences, relationships);
 
+console.log("--------------------------------");
+console.log(raw);
 console.log(best);
+console.log("--------------------------------");
