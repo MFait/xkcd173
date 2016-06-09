@@ -40,7 +40,7 @@ function allSequences(relationships) {
 };
 
 function evaluate(sequence, relationships) {
-    return _.sum(_.map(sequence, function(person, index) {
+    return  _.sum(_.map(sequence, function(person, index) {
         var score = 0;
 
         if (person != _.last(sequence)) {
