@@ -23,40 +23,48 @@ function permute(arr)
     }
 
     return result;
-}
+};
 
 function scoreFor(personA, personB, relationships) {
-    if((relationships[personA] === undefined) ||
-      (relationships[personA][personB] === undefined)) {
-      return 0
+    if(!relationships[personA] ||
+       !relationships[personA][personB]) {
+      return 0;
     }
 
     return relationships[personA][personB];
+};
+
+function allSequences(relationships) {
+    var all = Object.keys(relationships);
+    return permute(all);
+};
+
+function evaluate(sequence, relationships) {
+    return _.sum(_.map(sequence, function(person, index) {
+        var score = 0;
+
+        if (person != _.last(sequence)) {
+            score += scoreFor(person, sequence[index + 1], relationships);
+        }
+
+        if (person != _.first(sequence)) {
+            score += scoreFor(person, sequence[index - 1], relationships);
+        }
+
+        return score;
+    }));
+}
+
+function findBest(sequences, relationships) {
+    return _.maxBy(sequences, function(sequence) {
+        return evaluate(sequence, relationships);
+    })
 }
 
 var seater = {
-
-    allSequences: function(relationships) {
-        var all = Object.keys(relationships);
-        return permute(all);
-    },
-
-    evaluate: function(sequence, relationships) {
-        return _.sum(_.map(sequence, function(person, index) {
-            var score = 0;
-
-            if (person != _.last(sequence)) {
-                score += scoreFor(person, sequence[index + 1], relationships);
-            }
-
-            if (person != _.first(sequence)) {
-                score += scoreFor(person, sequence[index - 1], relationships);
-            }
-
-            return score;
-        }));
-    }
-
+    allSequences: allSequences,
+    evaluate: evaluate,
+    findBest: findBest
 };
 
 module.exports = seater;

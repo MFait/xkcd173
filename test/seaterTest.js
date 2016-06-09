@@ -37,4 +37,21 @@ describe('seater', function() {
         expect(score).to.equal(0);
     });
 
+    it('should find best sequence', function() {
+        var relationships = {
+            Ina: { Jan: 5, Klaus: 2 },
+            Jan: { Ina: 5, Klaus: 2 },
+            Klaus: { Jan: 2, Ina: 3 }
+        };
+        var sequences = [
+          ['Klaus', 'Jan', 'Ina'],
+          ['Klaus', 'Ina', 'Jan'],
+          ['Jan', 'Klaus', 'Ina']
+        ];
+
+        var bestSequence = seater.findBest(sequences, relationships);
+
+        expect(bestSequence).to.eql(['Klaus', 'Ina', 'Jan']);
+    })
+
 });
