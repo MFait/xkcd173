@@ -10,7 +10,7 @@ describe("parser", function () {
         expect(relationships.Ann.Bob).to.equal(relationshipTypes.FRIENDS);
         expect(relationships.Bob.Ann).to.equal(relationshipTypes.FRIENDS);
     });
-    
+
     it('should parse a acquaintances relationship', function() {
         var raw = 'Charlie and Danny are acquaintances';
         var relationships = parser.parse(raw);
@@ -40,8 +40,6 @@ describe("parser", function () {
 
         var relationships = parser.parse(raw);
 
-        console.log(relationships);
-
         expect(relationships.Ina.Jan).to.equal(relationshipTypes.IN_A_RELATIONSHIP);
         expect(relationships.Jan.Ina).to.equal(relationshipTypes.IN_A_RELATIONSHIP);
         expect(relationships.Klaus.Jan).to.equal(relationshipTypes.FRIENDS);
@@ -50,6 +48,5 @@ describe("parser", function () {
         expect(relationships.Ina.Klaus).to.equal(relationshipTypes.FRIENDS);
         // looks like Klaus and Jan will not be friends any more very soon ...
     });
-
 
 });
