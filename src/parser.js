@@ -39,8 +39,7 @@ var parser =  {
             });
 
             checkMatch(line, /(.*?) has a crush on (.*?)$/g, function(matches) {
-                add(relationships, matches[1], matches[2], relationshipTypes.CRUSH);
-                add(relationships, matches[2], matches[1], relationshipTypes.FRIENDS);
+                add(relationships, matches[1], matches[2], relationshipTypes.CRUSH);                
             });
         });
 

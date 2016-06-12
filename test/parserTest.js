@@ -29,7 +29,6 @@ describe("parser", function () {
         var raw = 'Gil has a crush on Hans';
         var relationships = parser.parse(raw);
         expect(relationships.Gil.Hans).to.equal(relationshipTypes.CRUSH);
-        expect(relationships.Hans.Gil).to.equal(relationshipTypes.FRIENDS);
     });
 
     it('should parse mulitple relationships', function() {
@@ -45,7 +44,6 @@ describe("parser", function () {
         expect(relationships.Klaus.Jan).to.equal(relationshipTypes.FRIENDS);
         expect(relationships.Jan.Klaus).to.equal(relationshipTypes.FRIENDS);
         expect(relationships.Klaus.Ina).to.equal(relationshipTypes.CRUSH);
-        expect(relationships.Ina.Klaus).to.equal(relationshipTypes.FRIENDS);
         // looks like Klaus and Jan will not be friends any more very soon ...
     });
 
